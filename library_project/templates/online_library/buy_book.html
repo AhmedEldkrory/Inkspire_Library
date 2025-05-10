@@ -1,0 +1,415 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Buy Book - {{ book.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .book-cover {
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .purchase-details {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .purchase-price {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ea4335;
+    }
+
+    .purchase-type {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .benefits-list {
+        margin-top: 20px;
+    }
+
+    .benefits-list li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .benefits-list i {
+        color: #ea4335;
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+
+    .purchase-steps {
+        counter-reset: step-counter;
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .purchase-steps li {
+        position: relative;
+        padding-left: 50px;
+        margin-bottom: 20px;
+        counter-increment: step-counter;
+    }
+
+    .purchase-steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 36px;
+        height: 36px;
+        background-color: #ea4335;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .payment-option {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .payment-option:hover {
+        border-color: #ea4335;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .payment-option.selected {
+        border-color: #ea4335;
+        background-color: rgba(234, 67, 53, 0.05);
+    }
+
+    .payment-option i {
+        font-size: 1.5rem;
+        color: #ea4335;
+    }
+
+    .confirm-btn {
+        border-radius: 30px;
+        padding: 12px 30px;
+        font-weight: 600;
+        background-color: #ea4335;
+        border-color: #ea4335;
+        transition: all 0.3s ease;
+    }
+
+    .confirm-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(234, 67, 53, 0.4);
+    }
+
+    .shipping-info {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'book_list' %}">Books</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'book_detail' book_id=book.id %}">{{ book.title }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Buy</li>
+                </ol>
+            </nav>
+
+            <div class="card shadow border-0 mb-4">
+                <div class="card-header bg-danger text-white py-3">
+                    <h3 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Buy Book</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-center mb-4 mb-md-0">
+                            {% if book.cover_image %}
+                            <img src="{{ book.cover_image }}" alt="{{ book.title }}" class="book-cover img-fluid">
+                            {% else %}
+                            <div class="bg-light d-flex align-items-center justify-content-center rounded book-cover">
+                                <i class="fas fa-book fa-5x text-muted"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <h2 class="fw-bold mb-2">{{ book.title }}</h2>
+                            <p class="text-muted mb-3">by <strong>{{ book.author }}</strong></p>
+
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-primary rounded-pill px-3 py-2 me-2 mb-2">{{ book.category.name }}</span>
+                                <span class="badge bg-secondary rounded-pill px-3 py-2 me-2 mb-2">{{ book.publication_date|date:"Y" }}</span>
+                                <span class="badge bg-info text-dark rounded-pill px-3 py-2 mb-2">ISBN: {{ book.isbn }}</span>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <span class="fw-bold">Rating:</span>
+                                </div>
+                                <div class="rating me-2">
+                                    {% with book_rating=book.get_average_rating|default:0 %}
+                                        {% for i in "12345"|make_list %}
+                                            {% if forloop.counter <= book_rating %}
+                                                <i class="fas fa-star text-warning"></i>
+                                            {% else %}
+                                                <i class="far fa-star text-warning"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endwith %}
+                                </div>
+                                <small class="text-muted">({{ book.reviews.count|default:0 }} reviews)</small>
+                            </div>
+
+                            <div class="alert alert-danger d-inline-block">
+                                <h5 class="mb-0"><i class="fas fa-tag me-2"></i>Price: ${{ book.buy_price }}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <div class="purchase-details">
+                                <h4 class="mb-3">Purchase Details</h4>
+                                <div class="d-flex align-items-baseline mb-2">
+                                    <span class="purchase-price">${{ book.buy_price }}</span>
+                                    <span class="purchase-type ms-2">/permanent</span>
+                                </div>
+
+                                <p class="text-muted mb-3">Buy this book and add it to your permanent collection.</p>
+
+                                <h5 class="mb-2">Benefits:</h5>
+                                <ul class="benefits-list list-unstyled">
+                                    <li><i class="fas fa-check-circle"></i> Permanent ownership</li>
+                                    <li><i class="fas fa-check-circle"></i> Physical hardcover copy</li>
+                                    <li><i class="fas fa-check-circle"></i> Free shipping worldwide</li>
+                                    <li><i class="fas fa-check-circle"></i> 30-day money-back guarantee</li>
+                                    <li><i class="fas fa-check-circle"></i> Digital version included</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4 class="mb-3">How Purchasing Works</h4>
+                            <ol class="purchase-steps">
+                                <li>
+                                    <h5>Enter Shipping Details</h5>
+                                    <p>Provide your shipping address for delivery.</p>
+                                </li>
+                                <li>
+                                    <h5>Select Payment Method</h5>
+                                    <p>Choose your preferred payment option.</p>
+                                </li>
+                                <li>
+                                    <h5>Confirm Purchase</h5>
+                                    <p>Review your order and complete the purchase.</p>
+                                </li>
+                                <li>
+                                    <h5>Receive Your Book</h5>
+                                    <p>Your book will be delivered within 3-5 business days.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="mb-3">Shipping Information</h4>
+                                <div class="shipping-info">
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Shipping Address</label>
+                                        <textarea class="form-control" rows="3" required></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">City</label>
+                                            <input type="text" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Postal Code</label>
+                                            <input type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Country</label>
+                                        <select class="form-select" required>
+                                            <option value="">Select country</option>
+                                            <option value="US">United States</option>
+                                            <option value="UK">United Kingdom</option>
+                                            <option value="CA">Canada</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="EG">Egypt</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h4 class="mb-3">Payment Method</h4>
+                                <div class="payment-options">
+                                    <div class="payment-option selected">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <i class="far fa-credit-card"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-1">Credit Card</h5>
+                                                <p class="mb-0 text-muted small">Pay securely with your credit card</p>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <input type="radio" name="payment_method" value="credit_card" checked>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-option">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <i class="fab fa-paypal"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-1">PayPal</h5>
+                                                <p class="mb-0 text-muted small">Pay using your PayPal account</p>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <input type="radio" name="payment_method" value="paypal">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-option">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-1">Bank Transfer</h5>
+                                                <p class="mb-0 text-muted small">Pay directly from your bank account</p>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <input type="radio" name="payment_method" value="bank_transfer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info mt-4">
+                                    <p class="mb-0"><i class="fas fa-info-circle me-2"></i> This is a demonstration. No actual payment will be processed.</p>
+                                </div>
+
+                                <div class="order-summary mt-4">
+                                    <h4 class="mb-3">Order Summary</h4>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Book Price:</span>
+                                        <span>${{ book.buy_price }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Shipping:</span>
+                                        <span>Free</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Tax:</span>
+                                        <span>$0.00</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total:</span>
+                                        <span>${{ book.buy_price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-danger confirm-btn">
+                                <i class="fas fa-check-circle me-2"></i>Confirm Purchase - ${{ book.buy_price }}
+                            </button>
+                            <a href="{% url 'book_detail' book_id=book.id %}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Similar Books Section -->
+            <div class="card shadow border-0">
+                <div class="card-header bg-light">
+                    <h4 class="mb-0">You might also like</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for related_book in book.category.book_set.all|slice:":3" %}
+                            {% if related_book.id != book.id %}
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if related_book.cover_image %}
+                                    <img src="{{ related_book.cover_image }}" class="card-img-top" alt="{{ related_book.title }}" style="height: 150px; object-fit: cover;">
+                                    {% else %}
+                                    <div class="bg-light text-center py-4">
+                                        <i class="fas fa-book fa-3x text-muted"></i>
+                                    </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{ related_book.title|truncatechars:25 }}</h6>
+                                        <p class="card-text small text-muted">by {{ related_book.author }}</p>
+                                        <a href="{% url 'book_detail' related_book.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Handle payment option selection
+    $('.payment-option').click(function() {
+        $('.payment-option').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).find('input[type="radio"]').prop('checked', true);
+    });
+});
+</script>
+{% endblock %}

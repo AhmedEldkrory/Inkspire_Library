@@ -1,0 +1,201 @@
+# INKSPIRE LIBRARY MANAGEMENT SYSTEM - DOCUMENTATION
+
+## 1. SYSTEM OVERVIEW
+
+Inkspire is a comprehensive library management system designed to facilitate the management of books, users, borrowing, and other library operations. Located at Hogwarts Castle, Inkspire provides a modern, user-friendly interface for both library staff and patrons.
+
+## 2. DATABASE STRUCTURE
+
+The system is built on a relational database with the following entities:
+
+### 2.1 USER
+- username (Primary Key): Unique identifier for each user
+- password: Securely stored user password
+- first_name: User's first name
+- last_name: User's last name
+- email: User's email address
+- role: User's role in the system (admin, librarian, patron)
+
+### 2.2 BOOK
+- id (Primary Key): Unique identifier for each book
+- title: Book title
+- author: Book author
+- description: Detailed book description
+- cover_image: Path to book cover image
+- price: Book price for purchase
+- rental_price: Book price for borrowing
+- category_id (Foreign Key): References CATEGORY
+- publication_date: Date of publication
+- isbn: International Standard Book Number
+- quantity: Number of copies available
+- status: Availability status
+
+### 2.3 CATEGORY
+- id (Primary Key): Unique identifier for each category
+- name: Category name
+- description: Category description
+
+### 2.4 BORROW
+- id (Primary Key): Unique identifier for each borrowing transaction
+- user_id (Foreign Key): References USER
+- book_id (Foreign Key): References BOOK
+- borrow_date: Date when book was borrowed
+- due_date: Date when book is due to be returned
+- return_date: Date when book was returned (null if not returned)
+- status: Status of the borrowing (pending, approved, returned, overdue)
+- fine_amount: Fine amount for late returns
+
+### 2.5 REVIEW
+- id (Primary Key): Unique identifier for each review
+- user_id (Foreign Key): References USER
+- book_id (Foreign Key): References BOOK
+- rating: Numerical rating (1-5)
+- comment: Text review
+- review_date: Date when review was submitted
+
+### 2.6 FAVORITE
+- id (Primary Key): Unique identifier for each favorite entry
+- user_id (Foreign Key): References USER
+- book_id (Foreign Key): References BOOK
+- date_added: Date when book was added to favorites
+
+### 2.7 NOTIFICATION
+- id (Primary Key): Unique identifier for each notification
+- user_id (Foreign Key): References USER
+- message: Notification message
+- date_created: Date when notification was created
+- is_read: Boolean indicating if notification has been read
+- type: Type of notification (due date reminder, new book, etc.)
+
+## 3. RELATIONSHIPS
+
+- A BOOK belongs to one CATEGORY, but a CATEGORY can have many BOOKs (1:n)
+- A USER can BORROW many BOOKs, and a BOOK can be borrowed by many USERs at different times (m:n through BORROW)
+- A USER can REVIEW many BOOKs, and a BOOK can have many REVIEWs from different USERs (m:n through REVIEW)
+- A USER can add many BOOKs to FAVORITES, and a BOOK can be favorited by many USERs (m:n through FAVORITE)
+- A USER can receive many NOTIFICATIONs (1:n)
+
+## 4. SYSTEM FEATURES
+
+### 4.1 User Management
+- User registration and authentication
+- User profile management
+- Role-based access control
+
+### 4.2 Book Management
+- Add, edit, and delete books
+- Categorize books
+- Upload and display book covers
+- Manage book inventory
+
+### 4.3 Borrowing System
+- Process borrow requests
+- Track due dates and returns
+- Calculate and manage fines
+- Borrowing history
+
+### 4.4 Search and Browse
+- Search books by title, author, category
+- Advanced search with filters
+- Browse books by category
+- View book details
+
+### 4.5 Reviews and Ratings
+- Allow users to rate and review books
+- Display average ratings
+- Show review history
+
+### 4.6 Favorites
+- Allow users to mark books as favorites
+- View and manage favorite books
+
+### 4.7 Notifications
+- Due date reminders
+- Overdue notifications
+- New book alerts
+- System announcements
+
+### 4.8 Purchase System
+- Allow users to purchase books
+- Process payment information
+- Track purchase history
+
+## 5. USER INTERFACE
+
+### 5.1 Home Page
+- Featured books
+- Categories section
+- Navigation to all main sections
+- Inkspire Library branding
+
+### 5.2 Book Listing Pages
+- Grid display of books with covers
+- Book information (title, author, rating)
+- Filtering and sorting options
+- Pagination
+
+### 5.3 Book Details Page
+- Comprehensive book information
+- Borrow/Buy options
+- Reviews section
+- Related books
+
+### 5.4 User Dashboard
+- Borrowed books
+- Due dates
+- Favorite books
+- Review history
+- Notifications
+
+### 5.5 Admin Dashboard
+- User management
+- Book management
+- Borrow request management
+- System statistics
+
+## 6. TECHNICAL SPECIFICATIONS
+
+### 6.1 Database
+- Microsoft SQL Server
+
+### 6.2 Front-end
+- HTML5, CSS3, JavaScript
+- Responsive design for all devices
+
+### 6.3 Back-end
+- Server-side processing
+- API endpoints for data operations
+- Authentication and authorization
+
+## 7. CONTACT INFORMATION
+
+- Phone: +201024030511
+- Email: ahmed.a.eldkrory@gmail.com
+- Copyright: 2025 all rights reserved
+
+## 8. SYSTEM REQUIREMENTS
+
+### 8.1 Server Requirements
+- Web server with appropriate hosting capabilities
+- Database server (Microsoft SQL Server)
+- Sufficient storage for book covers and user data
+
+### 8.2 Client Requirements
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- JavaScript enabled
+- Internet connection
+
+## 9. SECURITY MEASURES
+
+- Secure user authentication
+- Password encryption
+- Data validation
+- Protection against SQL injection
+- Regular security updates
+
+## 10. MAINTENANCE AND SUPPORT
+
+- Regular database backups
+- System updates and patches
+- Technical support for users
+- Bug reporting and resolution process

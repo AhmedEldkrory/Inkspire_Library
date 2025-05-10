@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Online Library{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Total Books</h5>
+                <h2 class="card-text">{{ total_books }}</h2>
+                <a href="{% url 'manage_books' %}" class="btn btn-light btn-sm">Manage Books</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Total Users</h5>
+                <h2 class="card-text">{{ total_users }}</h2>
+                <a href="#" class="btn btn-light btn-sm">Manage Users</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h5 class="card-title">Total Borrowings</h5>
+                <h2 class="card-text">{{ total_borrowings }}</h2>
+                <a href="{% url 'manage_borrow_requests' %}" class="btn btn-light btn-sm">Manage Borrowings</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5 class="card-title">Pending Requests</h5>
+                <h2 class="card-text">{{ pending_requests.count }}</h2>
+                <a href="{% url 'manage_borrow_requests' %}" class="btn btn-light btn-sm">View Requests</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Pending Borrow Requests -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Pending Borrow Requests</h5>
+            </div>
+            <div class="card-body">
+                {% if pending_requests %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Book</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for request in pending_requests %}
+                            <tr>
+                                <td>{{ request.user.username }}</td>
+                                <td>{{ request.book.title }}</td>
+                                <td>{{ request.request_date|date:"M d, Y" }}</td>
+                                <td>
+                                    <a href="{% url 'update_borrow_request' request.id %}" class="btn btn-sm btn-primary">
+                                        Review
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">No pending borrow requests.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'add_book' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add New Book
+                    </a>
+                    <a href="{% url 'manage_books' %}" class="btn btn-secondary">
+                        <i class="fas fa-book me-2"></i>Manage Books
+                    </a>
+                    <a href="{% url 'manage_borrow_requests' %}" class="btn btn-warning">
+                        <i class="fas fa-exchange-alt me-2"></i>Manage Borrow Requests
+                    </a>
+                    <a href="#" class="btn btn-info">
+                        <i class="fas fa-users me-2"></i>Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

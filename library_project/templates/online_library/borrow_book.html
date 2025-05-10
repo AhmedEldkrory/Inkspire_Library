@@ -1,0 +1,451 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Borrow Book - {{ book.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .book-cover {
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .borrow-details {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .borrow-price {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #4285f4;
+    }
+
+    .borrow-period {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .benefits-list {
+        margin-top: 20px;
+    }
+
+    .benefits-list li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .benefits-list i {
+        color: #4285f4;
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+
+    .borrow-steps {
+        counter-reset: step-counter;
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .borrow-steps li {
+        position: relative;
+        padding-left: 50px;
+        margin-bottom: 20px;
+        counter-increment: step-counter;
+    }
+
+    .borrow-steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 36px;
+        height: 36px;
+        background-color: #4285f4;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .confirm-btn {
+        border-radius: 30px;
+        padding: 12px 30px;
+        font-weight: 600;
+        background-color: #4285f4;
+        border-color: #4285f4;
+        transition: all 0.3s ease;
+    }
+
+    .confirm-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+    }
+
+    .shipping-info {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .order-summary {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .form-check-input:checked {
+        background-color: #4285f4;
+        border-color: #4285f4;
+    }
+
+    .modal-header {
+        background-color: #4285f4;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'book_list' %}">Books</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'book_detail' book_id=book.id %}">{{ book.title }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Borrow</li>
+                </ol>
+            </nav>
+
+            <div class="card shadow border-0 mb-4">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0"><i class="fas fa-book-reader me-2"></i>Borrow Book</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-center mb-4 mb-md-0">
+                            {% if book.cover_image %}
+                            <img src="{{ book.cover_image }}" alt="{{ book.title }}" class="book-cover img-fluid">
+                            {% else %}
+                            <div class="bg-light d-flex align-items-center justify-content-center rounded book-cover">
+                                <i class="fas fa-book fa-5x text-muted"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <h2 class="fw-bold mb-2">{{ book.title }}</h2>
+                            <p class="text-muted mb-3">by <strong>{{ book.author }}</strong></p>
+
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-primary rounded-pill px-3 py-2 me-2 mb-2">{{ book.category.name }}</span>
+                                <span class="badge bg-secondary rounded-pill px-3 py-2 me-2 mb-2">{{ book.publication_date|date:"Y" }}</span>
+                                <span class="badge bg-info text-dark rounded-pill px-3 py-2 mb-2">ISBN: {{ book.isbn }}</span>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <span class="fw-bold">Rating:</span>
+                                </div>
+                                <div class="rating me-2">
+                                    {% with book_rating=book.get_average_rating|default:0 %}
+                                        {% for i in "12345"|make_list %}
+                                            {% if forloop.counter <= book_rating %}
+                                                <i class="fas fa-star text-warning"></i>
+                                            {% else %}
+                                                <i class="far fa-star text-warning"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endwith %}
+                                </div>
+                                <small class="text-muted">({{ book.reviews.count|default:0 }} reviews)</small>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <span class="badge {% if book.available_copies > 0 %}bg-success{% else %}bg-danger{% endif %} rounded-pill px-3 py-2">
+                                    <i class="fas fa-copy me-1"></i> {{ book.available_copies }} of {{ book.total_copies }} available
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <div class="borrow-details">
+                                <h4 class="mb-3">Borrowing Details</h4>
+                                <div class="d-flex align-items-baseline mb-2">
+                                    <span class="borrow-price">${{ book.borrow_price }}</span>
+                                    <span class="borrow-period ms-2">/week</span>
+                                </div>
+
+                                <p class="text-muted mb-3">Borrow this book for a week and enjoy reading at your convenience.</p>
+
+                                <h5 class="mb-2">Benefits:</h5>
+                                <ul class="benefits-list list-unstyled">
+                                    <li><i class="fas fa-check-circle"></i> Access for 7 days</li>
+                                    <li><i class="fas fa-check-circle"></i> Renewable if needed</li>
+                                    <li><i class="fas fa-check-circle"></i> Digital access available</li>
+                                    <li><i class="fas fa-check-circle"></i> No late fees for first-time borrowers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4 class="mb-3">How Borrowing Works</h4>
+                            <ol class="borrow-steps">
+                                <li>
+                                    <h5>Select Return Date</h5>
+                                    <p>Choose when you plan to return the book (maximum 14 days).</p>
+                                </li>
+                                <li>
+                                    <h5>Confirm Borrowing</h5>
+                                    <p>Review your details and confirm your borrowing request.</p>
+                                </li>
+                                <li>
+                                    <h5>Pick Up Book</h5>
+                                    <p>Visit Inkspire Library at Hogwarts Castle to collect your book.</p>
+                                </li>
+                                <li>
+                                    <h5>Return on Time</h5>
+                                    <p>Return the book by the due date to avoid late fees.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    {% if book.available_copies > 0 %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="mb-3">Borrower Information</h4>
+                                <div class="shipping-info">
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Library Card Number (Optional)</label>
+                                        <input type="text" class="form-control">
+                                        <small class="text-muted">If you have a library card, enter the number for faster processing</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Address</label>
+                                        <textarea class="form-control" rows="3" required></textarea>
+                                        <small class="text-muted">We may need to contact you regarding your borrowed book</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h4 class="mb-3">Borrowing Details</h4>
+                                <div class="shipping-info">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Return Date</label>
+                                        {{ form|crispy }}
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Pickup Method</label>
+                                        <select class="form-select" name="pickup_method" required>
+                                            <option value="">Select pickup method</option>
+                                            <option value="in_person">In-Person Pickup</option>
+                                            <option value="delivery">Home Delivery (+$2.00)</option>
+                                            <option value="digital">Digital Copy (where available)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Special Instructions (Optional)</label>
+                                        <textarea class="form-control" rows="2"></textarea>
+                                    </div>
+
+                                    <div class="alert alert-info">
+                                        <p class="mb-0"><i class="fas fa-info-circle me-2"></i> Please select a return date for this book. You are expected to return the book by this date to avoid late fees.</p>
+                                    </div>
+
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">borrowing terms and conditions</a>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="order-summary mt-4">
+                                    <h4 class="mb-3">Borrowing Summary</h4>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Book:</span>
+                                        <span>{{ book.title }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Borrowing Fee:</span>
+                                        <span>${{ book.borrow_price }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Duration:</span>
+                                        <span>7 days</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total:</span>
+                                        <span>${{ book.borrow_price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary confirm-btn">
+                                <i class="fas fa-check-circle me-2"></i>Confirm Borrow - ${{ book.borrow_price }}
+                            </button>
+                            <a href="{% url 'book_detail' book_id=book.id %}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+
+                    <!-- Terms and Conditions Modal -->
+                    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="termsModalLabel">Borrowing Terms and Conditions</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>Inkspire Library Borrowing Policy</h5>
+                                    <p>By borrowing books from Inkspire Library, you agree to the following terms:</p>
+                                    <ol>
+                                        <li><strong>Loan Period:</strong> Books are loaned for a period of 7 days, with the option to renew if no other patron has requested the item.</li>
+                                        <li><strong>Late Fees:</strong> A fee of $0.50 per day will be charged for each item returned after the due date.</li>
+                                        <li><strong>Damaged or Lost Items:</strong> Borrowers are responsible for all materials checked out on their card and will be charged for damaged or lost items.</li>
+                                        <li><strong>Renewals:</strong> Items may be renewed twice if there are no holds on the item.</li>
+                                        <li><strong>Maximum Items:</strong> Patrons may borrow up to 5 books at one time.</li>
+                                    </ol>
+                                    <p>For complete details on our borrowing policy, please visit the library or contact our staff.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I Understand</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
+                            </div>
+                            <div>
+                                <h5>Not Available</h5>
+                                <p class="mb-0">Sorry, this book is currently not available for borrowing. Please check back later or browse other similar books.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <a href="{% url 'book_detail' book_id=book.id %}" class="btn btn-outline-secondary">Back to Book Details</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Similar Books Section -->
+            <div class="card shadow border-0">
+                <div class="card-header bg-light">
+                    <h4 class="mb-0">You might also like</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for related_book in book.category.book_set.all|slice:":3" %}
+                            {% if related_book.id != book.id %}
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if related_book.cover_image %}
+                                    <img src="{{ related_book.cover_image }}" class="card-img-top" alt="{{ related_book.title }}" style="height: 150px; object-fit: cover;">
+                                    {% else %}
+                                    <div class="bg-light text-center py-4">
+                                        <i class="fas fa-book fa-3x text-muted"></i>
+                                    </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{ related_book.title|truncatechars:25 }}</h6>
+                                        <p class="card-text small text-muted">by {{ related_book.author }}</p>
+                                        <a href="{% url 'book_detail' related_book.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Handle pickup method selection and update total
+    const basePrice = {{ book.borrow_price }};
+    let totalPrice = basePrice;
+
+    $('select[name="pickup_method"]').on('change', function() {
+        const selectedMethod = $(this).val();
+
+        // Reset to base price
+        totalPrice = basePrice;
+
+        // Add delivery fee if applicable
+        if (selectedMethod === 'delivery') {
+            totalPrice += 2.00;
+        }
+
+        // Update the displayed total
+        updateTotalDisplay();
+
+        // Update the confirm button text
+        updateConfirmButtonText();
+    });
+
+    function updateTotalDisplay() {
+        // Format to 2 decimal places
+        const formattedTotal = totalPrice.toFixed(2);
+        $('.order-summary .fw-bold span').text('$' + formattedTotal);
+    }
+
+    function updateConfirmButtonText() {
+        // Format to 2 decimal places
+        const formattedTotal = totalPrice.toFixed(2);
+        $('.confirm-btn').html('<i class="fas fa-check-circle me-2"></i>Confirm Borrow - $' + formattedTotal);
+    }
+
+    // Initialize tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
+{% endblock %}

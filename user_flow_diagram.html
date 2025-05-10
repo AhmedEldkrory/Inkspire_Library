@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkspire Library Management System - User Flow Diagram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 32px 24px 32px 24px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(67,97,238,0.08);
+        }
+        h1 {
+            color: #4361ee;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 18px;
+        }
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, #4361ee, #4cc9f0, #7209b7);
+            border-radius: 2.5px;
+        }
+        h2 {
+            color: #4361ee;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(to right, #4361ee, #7209b7);
+            border-radius: 1.5px;
+        }
+        .diagram-container {
+            width: 100%;
+            margin: 40px 0 0 0;
+            text-align: center;
+            overflow-x: auto;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(67,97,238,0.07);
+            background: #f8faff;
+            padding: 24px 0 24px 0;
+        }
+        .legend {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(67,97,238,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .legend h3 {
+            margin-top: 0;
+            color: #4361ee;
+            font-weight: 600;
+            width: 100%;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4cc9f0;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            min-width: 220px;
+        }
+        .legend-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(67,97,238,0.08);
+            font-size: 18px;
+        }
+        .legend-text {
+            flex: 1;
+            font-size: 15px;
+        }
+        .flow-description {
+            margin-top: 30px;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(67,97,238,0.05);
+        }
+        .flow-description h3 {
+            color: #4361ee;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .flow-description p, .flow-description ul, .flow-description ol {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        .flow-description ul, .flow-description ol {
+            padding-left: 22px;
+        }
+        @media (max-width: 900px) {
+            .container { padding: 10px; }
+            .diagram-container { padding: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inkspire Library Management System - User Flow Diagram</h1>
+        <div class="diagram-container">
+            <!-- Redesigned User Flow Diagram -->
+            <svg class="diagram" viewBox="0 0 1300 1300" width="100%" height="950" style="max-width:1200px;">
+                <!-- Start Node -->
+                <g>
+                    <circle cx="650" cy="60" r="32" fill="#4cc9f0" stroke="#4361ee" stroke-width="3"/>
+                    <text x="650" y="67" font-size="16" font-weight="600" text-anchor="middle" fill="#fff">Start</text>
+                </g>
+                <!-- Home Page -->
+                <g>
+                    <rect x="540" y="120" width="220" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="650" y="155" font-size="18" font-weight="600" text-anchor="middle" fill="#fff">🏠 Home Page</text>
+                </g>
+                <!-- Auth Decision -->
+                <g>
+                    <rect x="540" y="210" width="220" height="60" rx="18" fill="#f72585" stroke="#3a0ca3" stroke-width="2.5"/>
+                    <text x="650" y="245" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">🔒 Logged in?</text>
+                </g>
+                <!-- Login/Register (left) -->
+                <g>
+                    <rect x="180" y="210" width="180" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="270" y="245" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">🔑 Login/Register</text>
+                </g>
+                <!-- Admin Dashboard (right) -->
+                <g>
+                    <rect x="1000" y="210" width="200" height="60" rx="18" fill="#7209b7" stroke="#3a0ca3" stroke-width="2.5"/>
+                    <text x="1100" y="245" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">🛠️ Admin Dashboard</text>
+                </g>
+                <!-- Browse Books -->
+                <g>
+                    <rect x="540" y="320" width="220" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="650" y="355" font-size="18" font-weight="600" text-anchor="middle" fill="#fff">📚 Browse Books</text>
+                </g>
+                <!-- User Profile (right) -->
+                <g>
+                    <rect x="1000" y="320" width="200" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="1100" y="355" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">👤 User Profile</text>
+                </g>
+                <!-- Book Details -->
+                <g>
+                    <rect x="540" y="430" width="220" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="650" y="465" font-size="18" font-weight="600" text-anchor="middle" fill="#fff">📖 Book Details</text>
+                </g>
+                <!-- Favorites (right) -->
+                <g>
+                    <rect x="1000" y="430" width="200" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="1100" y="465" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">❤️ Favorites</text>
+                </g>
+                <!-- Action Decision -->
+                <g>
+                    <rect x="540" y="540" width="220" height="60" rx="18" fill="#f72585" stroke="#3a0ca3" stroke-width="2.5"/>
+                    <text x="650" y="575" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">🤔 Action?</text>
+                </g>
+                <!-- Borrow Book (left, below Action) -->
+                <g>
+                    <rect x="320" y="670" width="220" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="430" y="705" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">📥 Borrow Book</text>
+                </g>
+                <!-- Add Review (center, below Action) -->
+                <g>
+                    <rect x="540" y="670" width="220" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="650" y="705" font-size="18" font-weight="600" text-anchor="middle" fill="#fff">⭐ Add Review</text>
+                </g>
+                <!-- Buy Book (right, below Action) -->
+                <g>
+                    <rect x="760" y="670" width="220" height="60" rx="18" fill="#4cc9f0" stroke="#4361ee" stroke-width="2.5"/>
+                    <text x="870" y="705" font-size="17" font-weight="600" text-anchor="middle" fill="#fff">💳 Buy Book</text>
+                </g>
+                <!-- End Node -->
+                <g>
+                    <circle cx="650" cy="850" r="32" fill="#4cc9f0" stroke="#4361ee" stroke-width="3"/>
+                    <text x="650" y="857" font-size="16" font-weight="600" text-anchor="middle" fill="#fff">End</text>
+                </g>
+                <!-- Arrow Definitions -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#3a0ca3"/>
+                    </marker>
+                </defs>
+                <!-- Main vertical flow -->
+                <line x1="650" y1="92" x2="650" y2="120" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <line x1="650" y1="180" x2="650" y2="210" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <line x1="650" y1="270" x2="650" y2="320" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <line x1="650" y1="380" x2="650" y2="430" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <line x1="650" y1="490" x2="650" y2="540" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <!-- Side branches (horizontal, then vertical) -->
+                <!-- Auth Decision to Login/Register (No) -->
+                <line x1="540" y1="240" x2="360" y2="240" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="450" y="230" font-size="13" text-anchor="middle" fill="#3a0ca3">No</text>
+                <!-- Login/Register to Auth Decision -->
+                <path d="M 270 210 Q 270 170 540 210" fill="none" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <!-- Auth Decision to Admin Dashboard (Admin) -->
+                <line x1="760" y1="240" x2="1000" y2="240" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="900" y="230" font-size="13" text-anchor="middle" fill="#3a0ca3">Admin</text>
+                <!-- Auth Decision to User Profile (User) -->
+                <line x1="760" y1="240" x2="1000" y2="350" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="900" y="300" font-size="13" text-anchor="middle" fill="#3a0ca3">User</text>
+                <!-- Browse Books to User Profile -->
+                <line x1="760" y1="350" x2="1000" y2="350" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <!-- Book Details to Favorites -->
+                <line x1="760" y1="460" x2="1000" y2="460" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="900" y="450" font-size="13" text-anchor="middle" fill="#3a0ca3">Add to Favorites</text>
+                <!-- User Profile to Favorites -->
+                <line x1="1100" y1="380" x2="1100" y2="430" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <!-- Action Decision to Borrow Book (left) -->
+                <line x1="540" y1="570" x2="430" y2="670" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="480" y="630" font-size="13" text-anchor="middle" fill="#3a0ca3">Borrow</text>
+                <!-- Action Decision to Add Review (center) -->
+                <line x1="650" y1="600" x2="650" y2="670" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="670" y="650" font-size="13" text-anchor="middle" fill="#3a0ca3">Review</text>
+                <!-- Action Decision to Buy Book (right) -->
+                <line x1="760" y1="570" x2="870" y2="670" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <text x="820" y="630" font-size="13" text-anchor="middle" fill="#3a0ca3">Buy</text>
+                <!-- Borrow Book to End -->
+                <line x1="430" y1="730" x2="430" y2="850" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <line x1="430" y1="850" x2="618" y2="850" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <!-- Add Review to End -->
+                <line x1="650" y1="730" x2="650" y2="818" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <!-- Buy Book to End -->
+                <line x1="870" y1="730" x2="870" y2="850" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+                <line x1="870" y1="850" x2="682" y2="850" stroke="#3a0ca3" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+            </svg>
+        </div>
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-item">
+                <div class="legend-icon" style="background:#4cc9f0;">👤</div>
+                <div class="legend-text"><strong>User Action/Page</strong> &mdash; Pages or actions for regular users</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background:#7209b7;">🛠️</div>
+                <div class="legend-text"><strong>Admin Action/Page</strong> &mdash; Pages or actions for administrators</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background:#f72585;">🔒</div>
+                <div class="legend-text"><strong>Decision Point</strong> &mdash; Flow branches based on user choices or status</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background:#3a0ca3;width:40px;height:6px;border-radius:3px;"></div>
+                <div class="legend-text"><strong>Flow Direction</strong> &mdash; Sequence of user interactions</div>
+            </div>
+        </div>
+        <h2>User Flow Description</h2>
+        <div class="flow-description">
+            <h3>Regular User Flow</h3>
+            <p>The typical user journey through the Inkspire Library Management System follows these paths:</p>
+            <ol>
+                <li><strong>Entry Point:</strong> Users begin at the Home Page, which showcases featured books, categories, and navigation options.</li>
+                <li><strong>Authentication:</strong> If not logged in, users are directed to the Login/Register page to create an account or sign in.</li>
+                <li><strong>Book Discovery:</strong> After authentication, users can browse books by category, search for specific titles, or explore featured collections.</li>
+                <li><strong>Book Details:</strong> Selecting a book displays its detailed information, including description, author details, availability, and reviews.</li>
+                <li><strong>Book Actions:</strong> From the book details page, users can:
+                    <ul>
+                        <li>Borrow the book (submit a borrow request)</li>
+                        <li>Purchase the book</li>
+                        <li>Add a review or rating</li>
+                        <li>Add the book to their favorites</li>
+                    </ul>
+                </li>
+                <li><strong>User Profile:</strong> Users can access their profile to view:
+                    <ul>
+                        <li>Currently borrowed books</li>
+                        <li>Borrowing history</li>
+                        <li>Favorite books</li>
+                        <li>Personal information</li>
+                        <li>Notifications</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        <div class="flow-description">
+            <h3>Administrator Flow</h3>
+            <p>Administrators have access to additional functionality:</p>
+            <ol>
+                <li><strong>Admin Dashboard:</strong> After logging in as an admin, users can access the administrative dashboard.</li>
+                <li><strong>User Management:</strong> Admins can view, edit, and manage user accounts.</li>
+                <li><strong>Book Management:</strong> Admins can add new books, update existing ones, and manage inventory.</li>
+                <li><strong>Category Management:</strong> Admins can create and edit book categories.</li>
+                <li><strong>Borrow Request Management:</strong> Admins can approve or reject borrow requests and process returns.</li>
+                <li><strong>Reports and Analytics:</strong> Admins can view system statistics and generate reports.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

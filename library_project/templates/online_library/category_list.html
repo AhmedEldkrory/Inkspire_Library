@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}All Categories - Inkspire Library{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                    url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 3rem;
+        border-radius: 0;
+    }
+
+    .section-title {
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+    }
+
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+
+    .category-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-icon {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        border-radius: 50%;
+        background-color: rgba(52, 152, 219, 0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">All Categories</h1>
+        <p class="lead">Explore our diverse collection of book categories at Inkspire Library</p>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row g-4">
+        {% for category in categories %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <a href="{% url 'book_list' %}?category={{ category.id }}" class="text-decoration-none">
+                <div class="category-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="category-icon">
+                            <i class="fas fa-book fa-2x text-primary"></i>
+                        </div>
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <p class="card-text text-muted">{{ category.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-secondary">{{ category.books.count }} books</span>
+                            <span class="btn btn-sm btn-outline-primary">Browse Books</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>No categories available.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Add hover effect to category cards
+    $('.category-card').hover(
+        function() {
+            $(this).addClass('shadow-lg');
+        },
+        function() {
+            $(this).removeClass('shadow-lg');
+        }
+    );
+});
+</script>
+{% endblock %}

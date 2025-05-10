@@ -1,0 +1,223 @@
+DATABASE EXPORT - 2025-05-06 01:32:05
+================================================================================
+
+TABLE: User
+--------------------------------------------------------------------------------
+id | password | last_login | is_superuser | username | first_name | last_name | is_staff | is_active | date_joined | role | email | phone_number | address | created_at | updated_at
+--------------------------------------------------------------------------------
+1 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | 2025-05-05 18:42:06 | True | ahmed |  |  | True | True | 2025-05-05 16:03:13 | user | ahmed.a.eldkrory@gmail.com | None | None | 2025-05-05 16:03:14 | 2025-05-05 22:29:14
+2 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | 2025-05-05 22:30:17 | True | admin |  |  | True | True | 2025-05-05 16:46:42 | admin | admin@example.com | None | None | 2025-05-05 16:46:42 | 2025-05-05 22:29:14
+3 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | 2025-05-05 22:30:30 | False | Ali | User 1 | Test | False | True | 2025-05-05 16:46:42 | user | user1@example.com | None |  | 2025-05-05 16:46:42 | 2025-05-05 22:29:14
+4 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | None | False | Fady | User 2 | Test | False | True | 2025-05-05 16:46:42 | user | user2@example.com | None |  | 2025-05-05 16:46:42 | 2025-05-05 22:29:14
+5 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | None | False | Mohammed | User 3 | Test | False | True | 2025-05-05 16:46:43 | user | user3@example.com | None |  | 2025-05-05 16:46:43 | 2025-05-05 22:29:14
+6 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | None | False | Manar | User 4 | Test | False | True | 2025-05-05 16:46:44 | user | user4@example.com | None |  | 2025-05-05 16:46:44 | 2025-05-05 22:29:14
+7 | pbkdf2_sha256$1000000$YYMwircpqt8ugO2ccqZoUP$Ub... | None | False | Samy | User 5 | Test | False | True | 2025-05-05 16:46:44 | user | user5@example.com | None |  | 2025-05-05 16:46:44 | 2025-05-05 22:29:14
+
+
+TABLE: Category
+--------------------------------------------------------------------------------
+id | name | description | created_at
+--------------------------------------------------------------------------------
+1 | Fiction | Novels, short stories, and other fictional works | 2025-05-05 16:46:41
+2 | Non-Fiction | Factual works, biographies, and informational t... | 2025-05-05 16:46:41
+3 | Science Fiction | Speculative fiction dealing with imaginative co... | 2025-05-05 16:46:41
+4 | Mystery | Fiction dealing with the solution of a crime or... | 2025-05-05 16:46:41
+5 | Fantasy | Fiction featuring magical and supernatural elem... | 2025-05-05 16:46:41
+6 | Biography | Detailed descriptions of a person's life | 2025-05-05 16:46:41
+7 | History | Books about historical events and periods | 2025-05-05 16:46:41
+8 | Science | Books about scientific discoveries and concepts | 2025-05-05 16:46:41
+9 | Technology | Books about technological advancements and comp... | 2025-05-05 16:46:41
+10 | Self-Help | Books aimed at personal improvement | 2025-05-05 16:46:41
+
+
+TABLE: Book
+--------------------------------------------------------------------------------
+id | title | author | description | category | cover_image | pdf_file | isbn | publication_date | total_copies | available_copies | borrow_price | buy_price | created_at | updated_at
+--------------------------------------------------------------------------------
+1 | To Kill a Mockingbird | Harper Lee | The story of young Scout Finch and her father A... | Fiction | /media/covers/9780061120084.jpg | None | 9780061120084 | 1960-07-11 | 10 | 6 | 9.99 | 29.99 | 2025-05-05 16:46:41 | 2025-05-05 17:28:45
+2 | 1984 | George Orwell | A dystopian novel set in a totalitarian society... | Fiction | /media/covers/9780451524935.jpg | None | 9780451524935 | 1949-06-08 | 15 | 12 | 9.99 | 29.99 | 2025-05-05 16:46:41 | 2025-05-05 22:18:49
+3 | The Great Gatsby | F. Scott Fitzgerald | The story of eccentric millionaire Jay Gatsby a... | Fiction | /media/covers/9780743273565.jpg | None | 9780743273565 | 1925-04-10 | 8 | 5 | 9.99 | 29.99 | 2025-05-05 16:46:41 | 2025-05-05 17:28:57
+4 | A Brief History of Time | Stephen Hawking | A landmark volume in science writing that expla... | Science | /media/covers/9780553380163.jpg | None | 9780553380163 | 1988-09-01 | 7 | 6 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:00
+5 | The Hobbit | J.R.R. Tolkien | The adventure of Bilbo Baggins, a hobbit who em... | Fantasy | /media/covers/9780547928227.jpg | None | 9780547928227 | 1937-09-21 | 20 | 15 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:06
+6 | Sapiens: A Brief History of Humankind | Yuval Noah Harari | A survey of the history of humankind from the e... | History | /media/covers/9780062316097.jpg | None | 9780062316097 | 2014-02-10 | 12 | 10 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:12
+7 | The Alchemist | Paulo Coelho | A philosophical novel about a young Andalusian ... | Fiction | /media/covers/9780061122415.jpg | None | 9780061122415 | 1988-01-01 | 15 | 12 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:15
+8 | The Da Vinci Code | Dan Brown | A mystery thriller novel that follows symbologi... | Mystery | /media/covers/9780307474278.jpg | None | 9780307474278 | 2003-03-18 | 18 | 14 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:20
+9 | Dune | Frank Herbert | A science fiction novel set in the distant futu... | Science Fiction | /media/covers/9780441172719.jpg | None | 9780441172719 | 1965-08-01 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:26
+10 | Steve Jobs | Walter Isaacson | The biography of Apple co-founder Steve Jobs, b... | Biography | /media/covers/9781451648539.jpg | None | 9781451648539 | 2011-10-24 | 8 | 7 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:31
+11 | Thinking, Fast and Slow | Daniel Kahneman | A book that summarizes research that Kahneman c... | Non-Fiction | /media/covers/9780374533557.jpg | None | 9780374533557 | 2011-10-25 | 9 | 7 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:34
+12 | The Catcher in the Rye | J.D. Salinger | A novel about a teenager named Holden Caulfield... | Fiction | /media/covers/9780316769488.jpg | None | 9780316769488 | 1951-07-16 | 12 | 9 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:39
+13 | The Lord of the Rings | J.R.R. Tolkien | An epic high-fantasy novel that follows hobbits... | Fantasy | /media/covers/9780618640157.jpg | None | 9780618640157 | 1954-07-29 | 25 | 20 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:45
+14 | The Immortal Life of Henrietta Lacks | Rebecca Skloot | A non-fiction book about Henrietta Lacks, whose... | Science | /media/covers/9781400052189.jpg | None | 9781400052189 | 2010-02-02 | 7 | 6 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:51
+15 | The Girl with the Dragon Tattoo | Stieg Larsson | A psychological thriller that follows journalis... | Mystery | /media/covers/9780307454546.jpg | None | 9780307454546 | 2005-08-01 | 14 | 10 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:29:56
+16 | Educated | Tara Westover | A memoir about a woman who was raised in a surv... | Biography | /media/covers/9780399590504.jpg | None | 9780399590504 | 2018-02-20 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:30:02
+17 | The Martian | Andy Weir | A science fiction novel about an astronaut who ... | Science Fiction | /media/covers/9780553418026.jpg | None | 9780553418026 | 2014-02-11 | 15 | 12 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:30:08
+18 | Atomic Habits | James Clear | A practical guide to breaking bad habits and bu... | Self-Help | /media/covers/9780735211292.jpg | None | 9780735211292 | 2018-10-16 | 20 | 15 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:30:14
+19 | The Silent Patient | Alex Michaelides | A psychological thriller about a woman who shoo... | Mystery | /media/covers/9781250301697.jpg | None | 9781250301697 | 2019-02-05 | 12 | 9 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:30:20
+20 | The Power of Habit | Charles Duhigg | An examination of the science behind habit crea... | Self-Help | /media/covers/9780812981605.jpg | None | 9780812981605 | 2012-02-28 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 16:46:42 | 2025-05-05 17:30:23
+21 | Pride and Prejudice | Jane Austen | A romantic novel of manners that follows the ch... | Fiction | /media/covers/9780141439518.jpg | None | 9780141439518 | 1813-01-28 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:01:51 | 2025-05-05 17:30:29
+22 | The Odyssey | Homer | An ancient Greek epic poem that follows the Gre... | Fiction | /media/covers/9780140268867.jpg | None | 9780140268867 | 1800-01-01 | 5 | 4 | 9.99 | 29.99 | 2025-05-05 17:02:05 | 2025-05-05 17:30:35
+23 | Brave New World | Aldous Huxley | A dystopian novel set in a futuristic World Sta... | Science Fiction | /media/covers/9780060850524.jpg | None | 9780060850524 | 1932-01-01 | 12 | 10 | 9.99 | 29.99 | 2025-05-05 17:02:16 | 2025-05-05 17:30:44
+24 | The Shining | Stephen King | A horror novel about a family that spends a win... | Fiction | /media/covers/9780307743657.jpg | None | 9780307743657 | 1977-01-28 | 8 | 6 | 9.99 | 29.99 | 2025-05-05 17:02:27 | 2025-05-05 17:30:50
+25 | The Art of War | Sun Tzu | An ancient Chinese military treatise that is co... | Non-Fiction | /media/covers/9781590302255.jpg | None | 9781590302255 | 1910-01-01 | 15 | 12 | 9.99 | 29.99 | 2025-05-05 17:02:39 | 2025-05-05 17:30:56
+26 | The Road | Cormac McCarthy | A post-apocalyptic novel about a father and son... | Fiction | /media/covers/9780307387899.jpg | None | 9780307387899 | 2006-09-26 | 7 | 5 | 9.99 | 29.99 | 2025-05-05 17:02:50 | 2025-05-05 17:31:01
+27 | The Hunger Games | Suzanne Collins | A dystopian novel set in a post-apocalyptic nat... | Science Fiction | /media/covers/9780439023481.jpg | None | 9780439023481 | 2008-09-14 | 20 | 15 | 9.99 | 29.99 | 2025-05-05 17:03:06 | 2025-05-05 17:31:07
+28 | The Fault in Our Stars | John Green | A novel about a young woman with cancer who fal... | Fiction | /media/covers/9780142424179.jpg | None | 9780142424179 | 2012-01-10 | 15 | 12 | 9.99 | 29.99 | 2025-05-05 17:03:16 | 2025-05-05 17:31:10
+29 | The Lean Startup | Eric Ries | A business book that describes a methodology fo... | Non-Fiction | /media/covers/9780307887894.jpg | None | 9780307887894 | 2011-09-13 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:03:27 | 2025-05-05 17:31:16
+30 | Becoming | Michelle Obama | A memoir by the former First Lady of the United... | Biography | /media/covers/9781524763138.jpg | None | 9781524763138 | 2018-11-13 | 12 | 9 | 9.99 | 29.99 | 2025-05-05 17:03:38 | 2025-05-05 17:31:22
+31 | The Handmaid's Tale | Margaret Atwood | A dystopian novel set in a near-future New Engl... | Science Fiction | /media/covers/9780385490818.jpg | None | 9780385490818 | 1985-01-01 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:03:49 | 2025-05-05 17:31:28
+32 | The Kite Runner | Khaled Hosseini | A novel about the friendship between two boys g... | Fiction | /media/covers/9781594631931.jpg | None | 9781594631931 | 2003-05-29 | 8 | 6 | 9.99 | 29.99 | 2025-05-05 17:04:00 | 2025-05-05 17:31:34
+33 | The Name of the Wind | Patrick Rothfuss | A fantasy novel that tells the story of Kvothe,... | Fantasy | /media/covers/9780756404741.jpg | None | 9780756404741 | 2007-03-27 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:04:13 | 2025-05-05 17:31:40
+34 | The 7 Habits of Highly Effective People | Stephen R. Covey | A self-help book that outlines an approach to b... | Self-Help | /media/covers/9781982137274.jpg | None | 9781982137274 | 1989-08-15 | 20 | 15 | 9.99 | 29.99 | 2025-05-05 17:04:24 | 2025-05-05 17:31:48
+35 | The Girl on the Train | Paula Hawkins | A psychological thriller about a divorced alcoh... | Mystery | /media/covers/9781594634024.jpg | None | 9781594634024 | 2015-01-13 | 12 | 9 | 9.99 | 29.99 | 2025-05-05 17:04:38 | 2025-05-05 17:31:53
+36 | The Subtle Art of Not Giving a F*ck | Mark Manson | A self-help book that challenges the convention... | Self-Help | /media/covers/9780062457714.jpg | None | 9780062457714 | 2016-09-13 | 15 | 12 | 9.99 | 29.99 | 2025-05-05 17:04:49 | 2025-05-05 17:32:00
+37 | The Goldfinch | Donna Tartt | A novel about a boy who survives a terrorist bo... | Fiction | /media/covers/9780316055437.jpg | None | 9780316055437 | 2013-10-22 | 8 | 6 | 9.99 | 29.99 | 2025-05-05 17:05:02 | 2025-05-05 17:32:02
+38 | Astrophysics for People in a Hurry | Neil deGrasse Tyson | A book that offers a digestible account of the ... | Science | /media/covers/9780393609394.jpg | None | 9780393609394 | 2017-05-02 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:05:14 | 2025-05-05 17:32:05
+39 | Gone Girl | Gillian Flynn | A thriller novel about a man who becomes the pr... | Mystery | /media/covers/9780307588371.jpg | None | 9780307588371 | 2012-06-05 | 12 | 9 | 9.99 | 29.99 | 2025-05-05 17:05:27 | 2025-05-05 17:32:11
+40 | The Nightingale | Kristin Hannah | A historical fiction novel about two sisters in... | Fiction | /media/covers/9781250080400.jpg | None | 9781250080400 | 2015-02-03 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:05:40 | 2025-05-05 17:32:19
+41 | Where the Crawdads Sing | Delia Owens | A novel about a young woman who raises herself ... | Fiction | /media/covers/9780735219090.jpg | None | 9780735219090 | 2018-08-14 | 12 | 9 | 9.99 | 29.99 | 2025-05-05 17:05:54 | 2025-05-05 17:32:24
+42 | The Four Agreements | Don Miguel Ruiz | A self-help book that offers a code of conduct ... | Self-Help | /media/covers/9781878424310.jpg | None | 9781878424310 | 1997-11-07 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:06:05 | 2025-05-05 17:32:27
+43 | The Great Alone | Kristin Hannah | A novel about a family that moves to Alaska in ... | Fiction | /media/covers/9780312577230.jpg | None | 9780312577230 | 2018-02-06 | 10 | 8 | 9.99 | 29.99 | 2025-05-05 17:06:16 | 2025-05-05 17:32:33
+44 | UX Strategy | Jaime Levy | User experience (UX) strategy requires a carefu... | Technology | /media/covers/9781492052401.jpg | None | 9781492052401 | 2021-03-12 | 12 | 4 | 9.99 | 29.99 | 2025-05-05 17:37:52 | 2025-05-05 17:37:52
+45 | Digital Citizenship | Karen Mossberger, Caroline J. Tolbert, Ramona S... | The essential guide to one of the most influent... | Technology | /media/covers/9784260778549.jpg | None | 9784260778549 | 2008-01-01 | 6 | 1 | 9.99 | 29.99 | 2025-05-05 17:37:58 | 2025-05-05 17:37:58
+46 | The Pragmatic Programmer | Andrew Hunt, David Thomas | What others in the trenches say about The Pragm... | Technology | /media/covers/9780132119177.jpg | None | 9780132119177 | 1999-10-20 | 13 | 4 | 9.99 | 29.99 | 2025-05-05 17:38:04 | 2025-05-05 17:38:04
+47 | TinyML | Pete Warden, Daniel Situnayake | Deep learning networks are getting smaller. Muc... | Technology | /media/covers/9781492052012.jpg | None | 9781492052012 | 2019-12-16 | 13 | 3 | 9.99 | 29.99 | 2025-05-05 17:38:10 | 2025-05-05 17:38:10
+48 | The LaTeX Companion | Michel Goossens, Frank Mittelbach, Alexander Sa... | Computing Methodologies -- Text Processing. | Technology | /media/covers/0201541998.jpg | None | 0201541998 | 1994-01-01 | 16 | 4 | 9.99 | 29.99 | 2025-05-05 17:38:16 | 2025-05-05 17:38:16
+49 | The Definitive Guide to DAX | Marco Russo, Alberto Ferrari | Now expanded and updated with modern best pract... | Technology | /media/covers/9780134865874.jpg | None | 9780134865874 | 2019-07-02 | 7 | 5 | 9.99 | 29.99 | 2025-05-05 17:38:22 | 2025-05-05 17:38:22
+50 | Data Mapping for Data Warehouse Design | Qamar Shahbaz | Data mapping in a data warehouse is the process... | Technology | /media/covers/9780128053355.jpg | None | 9780128053355 | 2015-12-08 | 11 | 5 | 9.99 | 29.99 | 2025-05-05 17:38:25 | 2025-05-05 17:38:25
+51 | Machines Who Think | Pamela McCorduck, Cli Cfe | This book is a history of artificial intelligen... | Technology | /media/covers/9781000065299.jpg | None | 9781000065299 | 2004-03-17 | 16 | 5 | 9.99 | 29.99 | 2025-05-05 17:38:28 | 2025-05-05 17:38:28
+52 | Introduction to Computer Networks and Cybersecu... | Chwan-Hwa (John) Wu, J. David Irwin | If a network is not secure, how valuable is it?... | Technology | /media/covers/9781466572140.jpg | None | 9781466572140 | 2016-04-19 | 13 | 3 | 9.99 | 29.99 | 2025-05-05 17:38:33 | 2025-05-05 17:38:33
+53 | Elements of Programming | Alexander A. Stepanov, Paul McJones | A truly foundational book on the discipline of ... | Technology | /media/covers/9780321635372.jpg | None | 9780321635372 | 2009-01-01 | 7 | 4 | 9.99 | 29.99 | 2025-05-05 17:38:38 | 2025-05-05 17:38:38
+54 | Electronic Brains | Mike Hally | Account of the birth of the modern computer fro... | Technology | /media/covers/9789547957284.jpg | None | 9789547957284 | 2005-01-01 | 9 | 4 | 9.99 | 29.99 | 2025-05-05 17:38:43 | 2025-05-05 17:38:43
+55 | Programming Languages | Ravi Sethi | The charm of functional languages is illustrate... | Technology | /media/covers/9782112378926.jpg | None | 9782112378926 | 1996-01-01 | 11 | 4 | 9.99 | 29.99 | 2025-05-05 17:38:48 | 2025-05-05 17:38:48
+56 | PHP Objects, Patterns, and Practice | Matt Zandstra | PHP Objects Patterns and Practice, Fourth Editi... | Technology | /media/covers/9781430260325.jpg | None | 9781430260325 | 2014-01-21 | 15 | 1 | 9.99 | 29.99 | 2025-05-05 17:38:53 | 2025-05-05 17:38:53
+57 | Combinatorial Optimization | Bernhard H. Korte, Jens Vygen | This well-written textbook on combinatorial opt... | Technology | /media/covers/3540431543.jpg | None | 3540431543 | 2002-01-01 | 13 | 5 | 9.99 | 29.99 | 2025-05-05 17:38:58 | 2025-05-05 17:38:58
+58 | Reflections On Russia | Dmitrii S Likhachev | Among the most respected public figures in Russ... | History | /media/covers/9781000309331.jpg | None | 9781000309331 | 2019-09-16 | 19 | 1 | 9.99 | 29.99 | 2025-05-05 17:39:03 | 2025-05-05 17:39:03
+59 | Constantinople: Capital of Byzantium | Jonathan Harris | This book examines the intriguing interaction b... | History | /media/covers/9780826430861.jpg | None | 9780826430861 | 2009-05-05 | 14 | 2 | 9.99 | 29.99 | 2025-05-05 17:39:11 | 2025-05-05 17:39:11
+60 | Representing the Troubles in Irish Short Fiction | Michael L. Storey | Representing the Troubles in Irish Short Fictio... | History | /media/covers/9780813213668.jpg | None | 9780813213668 | 2004-05-01 | 7 | 2 | 9.99 | 29.99 | 2025-05-05 17:39:19 | 2025-05-05 17:39:19
+61 | Who's Who in the Age of Alexander and his Succe... | Waldemar Heckel | A unique compilation of more than one thousand ... | History | /media/covers/9781784386498.jpg | None | 9781784386498 | 2021-06-30 | 11 | 5 | 9.99 | 29.99 | 2025-05-05 17:39:27 | 2025-05-05 17:39:27
+62 | Sōtō Zen in Medieval Japan | William M. Bodiford | Explores how Soto monks between the 13th and 16... | History | /media/covers/0824814827.jpg | None | 0824814827 | 1993-01-01 | 20 | 2 | 9.99 | 29.99 | 2025-05-05 17:39:34 | 2025-05-05 17:39:34
+63 | Beyond War | Douglas P. Fry | The classic opening scene of 2001, A Space Odys... | History | /media/covers/9780195309485.jpg | None | 9780195309485 | 2007-02-16 | 16 | 5 | 9.99 | 29.99 | 2025-05-05 17:39:39 | 2025-05-05 17:39:39
+64 | Alexander the Great | Philip Freeman | In the first authoritative biography of Alexand... | History | /media/covers/9781439193280.jpg | None | 9781439193280 | 2011-01-04 | 19 | 3 | 9.99 | 29.99 | 2025-05-05 17:39:45 | 2025-05-05 17:39:45
+65 | Secrets of the Self (Asrar-i Khudi) | Muhammad Iqbal | This work has been selected by scholars as bein... | History | /media/covers/0344889130.jpg | None | 0344889130 | 2018-11-08 | 10 | 4 | 9.99 | 29.99 | 2025-05-05 17:39:53 | 2025-05-05 17:39:53
+66 | Russia and the Russians | Geoffrey A. Hosking | Chronicles the history of the Russian Empire fr... | History | /media/covers/0674004736.jpg | None | 0674004736 | 2001-01-01 | 8 | 5 | 9.99 | 29.99 | 2025-05-05 17:39:58 | 2025-05-05 17:39:58
+67 | The Language Loss of the Indigenous | G. N. Devy, Geoffrey V. Davis, K. K. Chakravarty | This volume traces the theme of the loss of lan... | History | /media/covers/9781317293132.jpg | None | 9781317293132 | 2016-02-26 | 8 | 2 | 9.99 | 29.99 | 2025-05-05 17:40:04 | 2025-05-05 17:40:04
+68 | Women and Confucian Cultures in Premodern China... | Dorothy Ko, JaHyun Kim Haboush, Joan Piggott | Representing an unprecedented collaboration amo... | History | /media/covers/9780520927827.jpg | None | 9780520927827 | 2003-08-28 | 17 | 5 | 9.99 | 29.99 | 2025-05-05 17:40:13 | 2025-05-05 17:40:13
+69 | The White Woman's Other Burden | Kumari Jayawardena | First Published in 1995. Routledge is an imprin... | History | /media/covers/0415911052.jpg | None | 0415911052 | 1995-01-01 | 11 | 1 | 9.99 | 29.99 | 2025-05-05 17:40:19 | 2025-05-05 17:40:19
+70 | Conservatism | Jerry Z. Muller | History Professor Jerry Muller locates the orig... | History | /media/covers/0691037116.jpg | None | 0691037116 | 1997-05-04 | 7 | 5 | 9.99 | 29.99 | 2025-05-05 17:40:25 | 2025-05-05 17:40:25
+71 | Images of Nebuchadnezzar | Ronald Herbert Sack | Images of Nebuchadnezzar attempts to probe the ... | History | /media/covers/1575910799.jpg | None | 1575910799 | 2004-01-01 | 15 | 5 | 9.99 | 29.99 | 2025-05-05 17:40:30 | 2025-05-05 17:40:30
+72 | Beria | Amy Knight | This is the biography of Lavrentii Beria, Stali... | Non-Fiction | /media/covers/9780691010939.jpg | None | 9780691010939 | 1993-01-01 | 5 | 3 | 9.99 | 29.99 | 2025-05-05 17:40:36 | 2025-05-05 17:40:36
+73 | Harrison | Jason Fine | In a tribute that fans will cherish, the editor... | Non-Fiction | /media/covers/9780743235815.jpg | None | 9780743235815 | 2002-01-01 | 15 | 1 | 9.99 | 29.99 | 2025-05-05 17:40:42 | 2025-05-05 17:40:42
+74 | Bruce | Peter Ames Carlin | " ... A stunning biography of Bruce Springsteen... | Non-Fiction | /media/covers/9781439191828.jpg | None | 9781439191828 | 2012-10-30 | 13 | 1 | 9.99 | 29.99 | 2025-05-05 17:40:47 | 2025-05-05 17:40:47
+75 | What Are the Gospels? | Richard A. Burridge | "The publication of Richard Burridge's What Are... | Non-Fiction | /media/covers/0802809715.jpg | None | 0802809715 | 2004-08-09 | 8 | 3 | 9.99 | 29.99 | 2025-05-05 17:40:53 | 2025-05-05 17:40:53
+76 | Cleopatra | Joyce A. Tyldesley | Joyce Tydesley has already penned acclaimed bio... | Non-Fiction | /media/covers/9785477623116.jpg | None | 9785477623116 | 2008-01-01 | 11 | 1 | 9.99 | 29.99 | 2025-05-05 17:41:00 | 2025-05-05 17:41:00
+77 | The Classical Art of Command | Joseph Roisman | This book examines the many facets of Greek lea... | Non-Fiction | /media/covers/9780199985821.jpg | None | 9780199985821 | 2017-01-01 | 14 | 2 | 9.99 | 29.99 | 2025-05-05 17:41:05 | 2025-05-05 17:41:05
+78 | A Moveable Feast | Ernest Hemingway | Hemingway records his five years in Paris, desc... | Non-Fiction | /media/covers/9780684824994.jpg | None | 9780684824994 | 1996-05-29 | 7 | 2 | 9.99 | 29.99 | 2025-05-05 17:41:11 | 2025-05-05 17:41:11
+79 | Visas for Life | Yukiko Sugihara | "Read the first English translated memoirs by h... | Non-Fiction | /media/covers/9788722137058.jpg | None | 9788722137058 | 1995-01-01 | 5 | 2 | 9.99 | 29.99 | 2025-05-05 17:41:22 | 2025-05-05 17:41:22
+80 | Freedom in Exile | Dalai Lama XIV Bstan-ʼdzin-rgya-mtsho | The autobiography of the Dalai Lama who won the... | Non-Fiction | /media/covers/9782551463616.jpg | None | 9782551463616 | 1990-01-01 | 10 | 5 | 9.99 | 29.99 | 2025-05-05 17:41:33 | 2025-05-05 17:41:33
+81 | Eat, Pray, Love | Elizabeth Gilbert | The Number One international bestseller, Eat, P... | Non-Fiction | /media/covers/9780747585664.jpg | None | 9780747585664 | 2007-03-05 | 16 | 2 | 9.99 | 29.99 | 2025-05-05 17:41:39 | 2025-05-05 17:41:39
+82 | Fablehaven | Brandon Mull | When Kendra and Seth go to stay at their grandp... | Fantasy | /media/covers/9781416947202.jpg | None | 9781416947202 | 2007-04-24 | 6 | 2 | 9.99 | 29.99 | 2025-05-05 17:41:45 | 2025-05-05 22:18:45
+83 | The Hobbit, Or, There and Back Again | John Ronald Reuel Tolkien | Bilbo Baggins an unambitious hobbitt, and a com... | Fantasy | /media/covers/0048231886.jpg | None | 0048231886 | 1981-01-01 | 9 | 1 | 9.99 | 29.99 | 2025-05-05 17:41:48 | 2025-05-05 17:41:48
+84 | The Illustrated Man | Ray Bradbury | Eighteen science fiction stories. | Fantasy | /media/covers/055327449X.jpg | None | 055327449X | 1951-01-01 | 7 | 2 | 9.99 | 29.99 | 2025-05-05 17:41:54 | 2025-05-05 17:41:54
+85 | The Subtle Knife | Philip Pullman | As the boundaries between worlds begin to disso... | Fantasy | /media/covers/9780375846724.jpg | None | 9780375846724 | 2007-01-01 | 18 | 4 | 9.99 | 29.99 | 2025-05-05 17:42:00 | 2025-05-05 17:42:00
+86 | The Wonderful Wizard of Oz | L. Frank Baum | In the first of L. Frank Baum's time-honored Oz... | Fantasy | /media/covers/9787504587184.jpg | None | 9787504587184 | 1968-01-01 | 12 | 1 | 9.99 | 29.99 | 2025-05-05 17:42:12 | 2025-05-05 17:42:12
+87 | A Wizard of Earthsea | Ursula K. Le Guin | A boy grows to manhood while attempting to subd... | Fantasy | /media/covers/9784826809958.jpg | None | 9784826809958 | 1968-01-01 | 9 | 5 | 9.99 | 29.99 | 2025-05-05 17:42:23 | 2025-05-05 17:42:23
+88 | The Wind in the Willows | Kenneth Grahame | The escapades of four animal friends who live a... | Fantasy | /media/covers/185326122X.jpg | None | 185326122X | 1993-01-01 | 13 | 3 | 9.99 | 29.99 | 2025-05-05 17:42:28 | 2025-05-05 17:42:28
+89 | Harry Potter and the Deathly Hallows | J. K. Rowling | At a time when the forces of evil seem to be ga... | Fantasy | /media/covers/9788017372512.jpg | None | 9788017372512 | 2007-01-01 | 14 | 5 | 9.99 | 29.99 | 2025-05-05 17:42:38 | 2025-05-05 17:42:38
+90 | Harry Potter and the Philosopher's Stone | J. K. Rowling | Harry Potter is an ordinary boy who lives in a ... | Fantasy | /media/covers/0747532699.jpg | None | 0747532699 | 1997-01-01 | 17 | 3 | 9.99 | 29.99 | 2025-05-05 17:42:44 | 2025-05-05 17:42:44
+91 | Moominland Midwinter | Tove Jansson | Everyone knows that the Moomins sleep through t... | Fantasy | /media/covers/9780140305029.jpg | None | 9780140305029 | 1971-01-01 | 8 | 3 | 9.99 | 29.99 | 2025-05-05 17:42:50 | 2025-05-05 17:42:50
+92 | Where the Wild Things are | Maurice Sendak | Max is sent to bed without supper and imagines ... | Fantasy | /media/covers/9782922383294.jpg | None | 9782922383294 | 1963-01-01 | 6 | 4 | 9.99 | 29.99 | 2025-05-05 17:42:59 | 2025-05-05 17:42:59
+93 | The Lord of the Rings | John Ronald Reuel Tolkien | Contains the complete set of the six books of L... | Fantasy | /media/covers/9782841706507.jpg | None | 9782841706507 | 2001-01-01 | 9 | 3 | 9.99 | 29.99 | 2025-05-05 17:43:08 | 2025-05-05 18:33:12
+94 | Through the Looking-Glass | Lewis Carroll | Publisher description | Fantasy | /media/covers/9780688120498.jpg | None | 9780688120498 | 1993-04-23 | 15 | 2 | 9.99 | 29.99 | 2025-05-05 17:43:13 | 2025-05-05 17:43:13
+95 | Throne of Glass | Sarah J. Maas | A hugely commercial, fabulously addictive fanta... | Fantasy | /media/covers/9781408832332.jpg | None | 9781408832332 | 2012-01-01 | 15 | 2 | 9.99 | 29.99 | 2025-05-05 17:43:20 | 2025-05-05 17:43:20
+96 | Moomin, Mymble and Little My | Tove Jansson | Finnish artist Tove Jansson's Moomin stories ha... | Fantasy | /media/covers/0953522741.jpg | None | 0953522741 | 2001-01-01 | 5 | 3 | 9.99 | 29.99 | 2025-05-05 17:43:28 | 2025-05-05 17:43:28
+
+
+TABLE: BorrowRequest
+--------------------------------------------------------------------------------
+id | user | book | status | request_date | borrow_date | return_date | actual_return_date
+--------------------------------------------------------------------------------
+1 | ahmed | To Kill a Mockingbird | returned | 2025-05-05 16:52:10 | 2025-05-05 16:52:10 | 2025-05-05 19:53:00 | None
+2 | ahmed | To Kill a Mockingbird | rejected | 2025-05-05 16:55:38 | 2025-05-05 16:55:38 | 2025-05-05 19:57:00 | None
+3 | ahmed | The Girl on the Train | returned | 2025-05-05 17:10:27 | 2025-05-05 17:10:27 | 2025-05-05 20:11:00 | 2025-05-05 17:15:08
+4 | ahmed | To Kill a Mockingbird | returned | 2025-05-05 17:15:17 | 2025-05-05 17:15:17 | 2025-05-05 20:15:00 | 2025-05-05 17:15:39
+5 | ahmed | The Girl on the Train | returned | 2025-05-05 17:23:29 | 2025-05-05 17:23:29 | 2025-05-05 20:25:00 | 2025-05-05 17:23:45
+6 | ahmed | The Immortal Life of Henrietta Lacks | returned | 2025-05-05 17:26:00 | 2025-05-05 17:26:00 | 2025-05-05 20:27:00 | 2025-05-05 17:26:34
+7 | ahmed | The Lord of the Rings | returned | 2025-05-05 18:32:46 | 2025-05-05 18:32:46 | 2025-05-05 21:32:00 | 2025-05-05 18:33:12
+8 | ahmed | 1984 | returned | 2025-05-05 22:13:17 | 2025-05-05 22:13:17 | None | 2025-05-05 22:18:49
+9 | ahmed | Fablehaven | pending | 2025-05-05 22:18:45 | 2025-05-05 22:18:45 | None | None
+
+
+TABLE: Review
+--------------------------------------------------------------------------------
+id | user | book | rating | comment | created_at | updated_at
+--------------------------------------------------------------------------------
+1 | Manar | To Kill a Mockingbird | 5 | Absolutely loved this book! Couldn't put it down. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+2 | Ali | To Kill a Mockingbird | 1 | Disappointing compared to the author's other wo... | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+3 | Fady | 1984 | 4 | One of the best books I've read this year. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+4 | admin | The Great Gatsby | 5 | One of the best books I've read this year. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+5 | Ali | The Great Gatsby | 1 | Struggled to finish this one. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+6 | Fady | The Great Gatsby | 4 | Highly recommend this to anyone who enjoys this... | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+7 | Samy | The Great Gatsby | 4 | One of the best books I've read this year. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+8 | Mohammed | The Great Gatsby | 1 | The characters felt one-dimensional and underde... | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+9 | admin | A Brief History of Time | 4 | Beautifully written with a compelling narrative. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+10 | Samy | A Brief History of Time | 1 | The plot had too many holes to be believable. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+11 | Ali | A Brief History of Time | 4 | A masterpiece that will stand the test of time. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+12 | Samy | The Hobbit | 4 | Absolutely loved this book! Couldn't put it down. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+13 | Manar | The Hobbit | 2 | Found the writing style difficult to engage with. | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+14 | admin | The Hobbit | 5 | I was completely immersed in the story from sta... | 2025-05-05 16:46:45 | 2025-05-05 16:46:45
+15 | Fady | Sapiens: A Brief History of Humankind | 1 | Too many clichés and predictable twists. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+16 | Fady | The Alchemist | 4 | A masterpiece that will stand the test of time. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+17 | Manar | The Alchemist | 4 | The author's writing style is exceptional. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+18 | Mohammed | The Alchemist | 5 | A masterpiece that will stand the test of time. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+19 | Mohammed | The Da Vinci Code | 3 | Interesting premise but the execution could hav... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+20 | Samy | The Da Vinci Code | 2 | The premise was promising but the execution fel... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+21 | admin | Dune | 5 | The author's writing style is exceptional. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+22 | Manar | Dune | 2 | The premise was promising but the execution fel... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+23 | Mohammed | Dune | 2 | Struggled to finish this one. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+24 | Ali | Steve Jobs | 1 | Didn't live up to my expectations at all. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+25 | Manar | Steve Jobs | 5 | The perfect balance of plot, character developm... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+26 | Samy | Steve Jobs | 2 | The plot had too many holes to be believable. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+27 | admin | Steve Jobs | 5 | A masterpiece that will stand the test of time. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+28 | Mohammed | Steve Jobs | 3 | Good but not great. Had potential to be more im... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+29 | admin | Thinking, Fast and Slow | 1 | Had trouble connecting with the characters. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+30 | Fady | Thinking, Fast and Slow | 1 | Didn't live up to my expectations at all. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+31 | Ali | Thinking, Fast and Slow | 1 | Too many clichés and predictable twists. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+32 | Ali | The Catcher in the Rye | 2 | Had trouble connecting with the characters. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+33 | Mohammed | The Catcher in the Rye | 1 | Found the writing style difficult to engage with. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+34 | Samy | The Lord of the Rings | 3 | Liked the characters but found the plot somewha... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+35 | Mohammed | The Immortal Life of Henrietta Lacks | 3 | The first half was excellent, but it lost momen... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+36 | Samy | The Girl with the Dragon Tattoo | 1 | The premise was promising but the execution fel... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+37 | Fady | The Girl with the Dragon Tattoo | 1 | The premise was promising but the execution fel... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+38 | admin | The Girl with the Dragon Tattoo | 3 | Liked the characters but found the plot somewha... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+39 | Manar | The Girl with the Dragon Tattoo | 4 | A thought-provoking read that stayed with me lo... | 2025-05-05 16:46:46 | 2025-05-05 17:16:59
+40 | Samy | Educated | 4 | I was completely immersed in the story from sta... | 2025-05-05 16:46:46 | 2025-05-05 17:00:14
+41 | Manar | The Martian | 4 | Highly recommend this to anyone who enjoys this... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+42 | admin | The Martian | 3 | Decent story with some memorable scenes, but al... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+43 | Samy | The Martian | 3 | Decent story with some memorable scenes, but al... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+44 | Mohammed | Atomic Habits | 4 | A masterpiece that will stand the test of time. | 2025-05-05 16:46:46 | 2025-05-05 17:01:03
+45 | Fady | Atomic Habits | 4 | Highly recommend this to anyone who enjoys this... | 2025-05-05 16:46:46 | 2025-05-05 17:00:44
+46 | Ali | Atomic Habits | 3 | Good book overall, but some parts dragged a bit. | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+47 | admin | Atomic Habits | 1 | The characters felt one-dimensional and underde... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+48 | Samy | Atomic Habits | 1 | The pacing was off, making it hard to stay inte... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+49 | Manar | The Silent Patient | 4 | The perfect balance of plot, character developm... | 2025-05-05 16:46:46 | 2025-05-05 16:46:46
+50 | Manar | The Power of Habit | 4 | The characters were so well developed and the p... | 2025-05-05 16:46:46 | 2025-05-05 17:00:26
+51 | Ali | The Power of Habit | 3 | The first half was excellent, but it lost momen... | 2025-05-05 16:46:46 | 2025-05-05 16:59:55
+54 | ahmed | The Lord of the Rings | 2 | Very good | 2025-05-05 18:56:37 | 2025-05-05 18:56:37
+58 | ahmed | The Goldfinch | 5 | Good | 2025-05-05 22:12:24 | 2025-05-05 22:12:24
+
+
+TABLE: Favorite
+--------------------------------------------------------------------------------
+id | user | book | created_at
+--------------------------------------------------------------------------------
+No records found.
+
+
+TABLE: Notification
+--------------------------------------------------------------------------------
+id | user | notification_type | message | is_read | created_at | related_book
+--------------------------------------------------------------------------------
+No records found.
+
+
+END OF DATABASE EXPORT

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkspire Library - Database Schema Visual</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4285f4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .schema-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .table {
+            border: 2px solid #4285f4;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 280px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        .table-header {
+            background-color: #4285f4;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+        .table-content {
+            padding: 0;
+        }
+        .column {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        .column:last-child {
+            border-bottom: none;
+        }
+        .column-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        .column-type {
+            color: #666;
+            font-size: 0.9em;
+            width: 100px;
+            text-align: right;
+        }
+        .primary-key {
+            position: relative;
+            padding-left: 20px;
+        }
+        .primary-key::before {
+            content: "🔑";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+        }
+        .foreign-key {
+            position: relative;
+            padding-left: 20px;
+        }
+        .foreign-key::before {
+            content: "🔗";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+        }
+        .relationship-container {
+            margin-top: 40px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .relationship {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .legend {
+            margin-top: 40px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .legend-icon {
+            margin-right: 10px;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+        .diagram-container {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        #diagram {
+            width: 100%;
+            height: 600px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .description {
+            margin-top: 40px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .description h2 {
+            color: #4285f4;
+            margin-top: 0;
+        }
+        .description p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inkspire Library - Database Schema Visual</h1>
+        
+        <div class="description">
+            <h2>Database Overview</h2>
+            <p>
+                The Inkspire Library Management System database consists of 7 tables that store information about users, books, categories, borrowing transactions, reviews, favorites, and notifications. The schema follows a relational database design with appropriate foreign key relationships between tables.
+            </p>
+            <p>
+                This visual representation helps to understand the database structure, table relationships, and the data types used for each column. Primary keys are marked with a key icon (🔑) and foreign keys with a link icon (🔗).
+            </p>
+        </div>
+        
+        <div class="schema-container">
+            <!-- Users Table -->
+            <div class="table">
+                <div class="table-header">users</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">username</div>
+                        <div class="column-type">VARCHAR(150)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">password</div>
+                        <div class="column-type">VARCHAR(128)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">email</div>
+                        <div class="column-type">VARCHAR(255)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">first_name</div>
+                        <div class="column-type">VARCHAR(150)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">last_name</div>
+                        <div class="column-type">VARCHAR(150)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">is_staff</div>
+                        <div class="column-type">BOOLEAN</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">is_active</div>
+                        <div class="column-type">BOOLEAN</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">is_superuser</div>
+                        <div class="column-type">BOOLEAN</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">role</div>
+                        <div class="column-type">VARCHAR(10)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">date_joined</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">last_login</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Table -->
+            <div class="table">
+                <div class="table-header">category</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">name</div>
+                        <div class="column-type">VARCHAR(100)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">description</div>
+                        <div class="column-type">TEXT</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">created_at</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book Table -->
+            <div class="table">
+                <div class="table-header">book</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">title</div>
+                        <div class="column-type">VARCHAR(200)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">author</div>
+                        <div class="column-type">VARCHAR(100)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">description</div>
+                        <div class="column-type">TEXT</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">category_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">cover_image</div>
+                        <div class="column-type">VARCHAR(255)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">pdf_file</div>
+                        <div class="column-type">VARCHAR(255)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">isbn</div>
+                        <div class="column-type">VARCHAR(13)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">publication_date</div>
+                        <div class="column-type">DATE</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">total_copies</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">available_copies</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">borrow_price</div>
+                        <div class="column-type">DECIMAL(6,2)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">buy_price</div>
+                        <div class="column-type">DECIMAL(6,2)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Borrow Request Table -->
+            <div class="table">
+                <div class="table-header">borrow_request</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">user_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">book_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">status</div>
+                        <div class="column-type">VARCHAR(20)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">request_date</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">borrow_date</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">return_date</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">actual_return_date</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review Table -->
+            <div class="table">
+                <div class="table-header">review</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">user_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">book_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">rating</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">comment</div>
+                        <div class="column-type">TEXT</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">created_at</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">updated_at</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Favorite Table -->
+            <div class="table">
+                <div class="table-header">favorite</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">user_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">book_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">created_at</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notification Table -->
+            <div class="table">
+                <div class="table-header">notification</div>
+                <div class="table-content">
+                    <div class="column primary-key">
+                        <div class="column-name">id</div>
+                        <div class="column-type">SERIAL</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">user_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">notification_type</div>
+                        <div class="column-type">VARCHAR(50)</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">message</div>
+                        <div class="column-type">TEXT</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">is_read</div>
+                        <div class="column-type">BOOLEAN</div>
+                    </div>
+                    <div class="column">
+                        <div class="column-name">created_at</div>
+                        <div class="column-type">TIMESTAMP</div>
+                    </div>
+                    <div class="column foreign-key">
+                        <div class="column-name">related_book_id</div>
+                        <div class="column-type">INTEGER</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="relationship-container">
+            <h2>Table Relationships</h2>
+            <div class="relationship">
+                <strong>book</strong> to <strong>category</strong>: Many-to-One (A book belongs to one category, a category can have many books)
+            </div>
+            <div class="relationship">
+                <strong>borrow_request</strong> to <strong>users</strong>: Many-to-One (A user can have many borrow requests, each borrow request belongs to one user)
+            </div>
+            <div class="relationship">
+                <strong>borrow_request</strong> to <strong>book</strong>: Many-to-One (A book can have many borrow requests, each borrow request is for one book)
+            </div>
+            <div class="relationship">
+                <strong>review</strong> to <strong>users</strong>: Many-to-One (A user can write many reviews, each review is written by one user)
+            </div>
+            <div class="relationship">
+                <strong>review</strong> to <strong>book</strong>: Many-to-One (A book can have many reviews, each review is for one book)
+            </div>
+            <div class="relationship">
+                <strong>favorite</strong> to <strong>users</strong>: Many-to-One (A user can have many favorite books, each favorite entry belongs to one user)
+            </div>
+            <div class="relationship">
+                <strong>favorite</strong> to <strong>book</strong>: Many-to-One (A book can be favorited by many users, each favorite entry is for one book)
+            </div>
+            <div class="relationship">
+                <strong>notification</strong> to <strong>users</strong>: Many-to-One (A user can have many notifications, each notification is for one user)
+            </div>
+            <div class="relationship">
+                <strong>notification</strong> to <strong>book</strong>: Many-to-One (A notification can be related to a book, optional relationship)
+            </div>
+        </div>
+        
+        <div class="legend">
+            <h2>Legend</h2>
+            <div class="legend-item">
+                <div class="legend-icon">🔑</div>
+                <div>Primary Key</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon">🔗</div>
+                <div>Foreign Key</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}My Borrowings - Online Library{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>My Borrowings</h1>
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
+        <button type="button" class="btn btn-outline-primary" data-filter="pending">Pending</button>
+        <button type="button" class="btn btn-outline-primary" data-filter="approved">Active</button>
+        <button type="button" class="btn btn-outline-primary" data-filter="returned">Returned</button>
+    </div>
+</div>
+
+<div class="row">
+    {% for borrowing in borrowings %}
+    <div class="col-md-6 mb-4 borrowing-card" data-status="{{ borrowing.status }}">
+        <div class="card h-100">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if borrowing.book.cover_image %}
+                    <img src="{{ borrowing.book.cover_image }}" class="img-fluid rounded-start h-100 object-fit-cover" alt="{{ borrowing.book.title }}">
+                    {% else %}
+                    <div class="h-100 bg-light d-flex align-items-center justify-content-center">
+                        <i class="fas fa-book fa-3x text-muted"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ borrowing.book.title }}</h5>
+                        <p class="card-text text-muted">by {{ borrowing.book.author }}</p>
+
+                        <div class="mb-2">
+                            <span class="badge {% if borrowing.status == 'pending' %}bg-warning
+                                          {% elif borrowing.status == 'approved' %}bg-success
+                                          {% elif borrowing.status == 'rejected' %}bg-danger
+                                          {% else %}bg-secondary{% endif %}">
+                                {{ borrowing.status|title }}
+                            </span>
+                        </div>
+
+                        <div class="small text-muted mb-2">
+                            <p class="mb-1">
+                                <strong>Request Date:</strong> {{ borrowing.request_date|date:"M d, Y" }}
+                            </p>
+                            {% if borrowing.borrow_date %}
+                            <p class="mb-1">
+                                <strong>Borrow Date:</strong> {{ borrowing.borrow_date|date:"M d, Y" }}
+                            </p>
+                            {% endif %}
+                            {% if borrowing.return_date %}
+                            <p class="mb-1">
+                                <strong>Due Date:</strong>
+                                <span class="{% if borrowing.return_date|date:'Y-m-d' < now|date:'Y-m-d' and borrowing.status == 'approved' %}text-danger{% endif %}">
+                                    {{ borrowing.return_date|date:"M d, Y" }}
+                                </span>
+                            </p>
+                            {% endif %}
+                            {% if borrowing.actual_return_date %}
+                            <p class="mb-1">
+                                <strong>Returned On:</strong> {{ borrowing.actual_return_date|date:"M d, Y" }}
+                            </p>
+                            {% endif %}
+                        </div>
+
+                        {% if borrowing.status == 'approved' and not borrowing.actual_return_date %}
+                        <div class="alert alert-{% if borrowing.return_date|date:'Y-m-d' < now|date:'Y-m-d' %}danger{% else %}info{% endif %} small mb-2">
+                            {% if borrowing.return_date|date:'Y-m-d' < now|date:'Y-m-d' %}
+                            <i class="fas fa-exclamation-triangle me-1"></i> Book is overdue!
+                            {% else %}
+                            <i class="fas fa-info-circle me-1"></i> Please return by {{ borrowing.return_date|date:"M d, Y" }}
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <div class="mt-2">
+                            <a href="{% url 'book_detail' borrowing.book.id %}" class="btn btn-sm btn-outline-primary">
+                                View Book
+                            </a>
+                            {% if borrowing.status == 'approved' and not borrowing.actual_return_date %}
+                            <a href="{% url 'return_book' borrowing.id %}" class="btn btn-sm btn-outline-success" onclick="return confirm('Are you sure you want to return this book?')">
+                                <i class="fas fa-undo me-1"></i>Return Book
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>You haven't borrowed any books yet.
+            <a href="{% url 'book_list' %}" class="alert-link">Browse our collection</a> to find your next read!
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Filter borrowings
+    $('.btn-group button').click(function() {
+        $('.btn-group button').removeClass('active');
+        $(this).addClass('active');
+
+        const filter = $(this).data('filter');
+        if (filter === 'all') {
+            $('.borrowing-card').show();
+        } else {
+            $('.borrowing-card').hide();
+            $(`.borrowing-card[data-status="${filter}"]`).show();
+        }
+    });
+});
+</script>
+{% endblock %}

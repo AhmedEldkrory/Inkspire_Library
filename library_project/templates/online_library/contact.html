@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Inkspire Library{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body p-5">
+                    <h1 class="display-4 text-center mb-4">Contact Us</h1>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="card h-100 bg-light">
+                                <div class="card-body">
+                                    <h3 class="h5 card-title">
+                                        <i class="fas fa-map-marker-alt text-primary me-2"></i>Visit Us
+                                    </h3>
+                                    <address class="mb-0">
+                                        <strong>Inkspire Library</strong><br>
+                                        {{ address }}<br>
+                                        Scotland, United Kingdom<br>
+                                        <small class="text-muted">(Located in the East Wing, Third Floor)</small>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 bg-light">
+                                <div class="card-body">
+                                    <h3 class="h5 card-title">
+                                        <i class="fas fa-clock text-primary me-2"></i>Library Hours
+                                    </h3>
+                                    <ul class="list-unstyled mb-0">
+                                        {% for day, time in hours.items %}
+                                        <li><strong>{{ day }}:</strong> {{ time }}</li>
+                                        {% endfor %}
+                                        <li><strong>Holidays:</strong> Closed (except special events)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <div class="text-center mb-4 mb-md-0">
+                                <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-phone fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="h5">Phone</h3>
+                                <p class="mb-0">{{ phone }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center mb-4 mb-md-0">
+                                <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-envelope fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="h5">Email</h3>
+                                <p class="mb-0">{{ email }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-comment fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="h5">Live Chat</h3>
+                                <p class="mb-0">Available during library hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-5">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="h5 mb-0">Send Us a Message</h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <label for="name" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="Enter message subject">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h3 class="h5 mb-0">Frequently Asked Questions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            How do I get a library card?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            To get a library card, simply register on our website and visit the library in person with a valid ID to activate your account.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            What is the late fee for overdue books?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            The late fee is 0.50 Galleons per day per book. However, we send reminders before the due date to help you avoid late fees.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Can I reserve books online?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, registered users can reserve books online through our website. Reserved books will be held for 3 days.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

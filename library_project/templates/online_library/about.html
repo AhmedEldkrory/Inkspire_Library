@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}About Inkspire Library{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body p-5">
+                    <h1 class="display-4 text-center mb-4">About Inkspire Library</h1>
+                    
+                    <div class="text-center mb-5">
+                        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Library Interior" class="img-fluid rounded-3 shadow" style="max-height: 300px;">
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100 bg-light">
+                                <div class="card-body">
+                                    <h3 class="h5 card-title">
+                                        <i class="fas fa-info-circle text-primary me-2"></i>Library Details
+                                    </h3>
+                                    <ul class="list-unstyled">
+                                        <li><strong>Name:</strong> {{ library_name }}</li>
+                                        <li><strong>Location:</strong> {{ location }}</li>
+                                        <li><strong>Established:</strong> {{ established }}</li>
+                                        <li><strong>Collection Size:</strong> {{ collection_size }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 bg-light">
+                                <div class="card-body">
+                                    <h3 class="h5 card-title">
+                                        <i class="fas fa-clock text-primary me-2"></i>Opening Hours
+                                    </h3>
+                                    <ul class="list-unstyled">
+                                        <li><strong>Monday-Friday:</strong> 9:00 AM - 8:00 PM</li>
+                                        <li><strong>Saturday:</strong> 10:00 AM - 6:00 PM</li>
+                                        <li><strong>Sunday:</strong> 12:00 PM - 5:00 PM</li>
+                                        <li><strong>Holidays:</strong> Closed (except special events)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h2 class="h3 mb-3">Our Mission</h2>
+                        <p class="lead">{{ mission }}</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h2 class="h3 mb-3">Our Vision</h2>
+                        <p class="lead">{{ vision }}</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h2 class="h3 mb-3">Our History</h2>
+                        <p>
+                            Founded in {{ established }}, Inkspire Library at Hogwarts Castle has been a beacon of knowledge and 
+                            magical learning for generations of witches and wizards. What began as a small collection of magical 
+                            texts has grown into one of the most comprehensive libraries in the wizarding world.
+                        </p>
+                        <p>
+                            Our library houses rare manuscripts, first editions, and magical texts that cannot be found anywhere else. 
+                            The architecture of our reading rooms combines ancient magical craftsmanship with modern amenities, 
+                            creating a perfect atmosphere for study and contemplation.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h2 class="h3 mb-3">Our Services</h2>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-book fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5>Book Borrowing</h5>
+                                        <p>Borrow up to 5 books for a period of 14 days with the option to renew.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-wifi fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5>Free Wi-Fi</h5>
+                                        <p>High-speed internet access throughout the library.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-users fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5>Study Groups</h5>
+                                        <p>Dedicated spaces for collaborative learning and study groups.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-chalkboard-teacher fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5>Workshops & Events</h5>
+                                        <p>Regular literary events, author talks, and educational workshops.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-5">
+                        <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">Contact Us</a>
+                        <a href="{% url 'book_list' %}" class="btn btn-outline-primary btn-lg ms-2">Explore Books</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
