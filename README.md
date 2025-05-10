@@ -15,7 +15,7 @@ This project is a Library Management System designed to manage books, users, bor
 ## Setup Instructions
 1. **Clone the Repository**:
    ```bash
-   git clone <git@github.com:AhmedEldkrory/Inkspire_Library.git>
+   git clone git@github.com:AhmedEldkrory/Inkspire_Library.git
    cd Inkspire_Library
    ```
 
